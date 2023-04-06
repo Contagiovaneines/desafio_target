@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+	<h1>Percentual de Faturamento por Estado</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>Estado</th>
+				<th>Faturamento (R$)</th>
+				<th>Percentual</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>SP</td>
+				<td>67.836,43</td>
+				<td id="percentual-sp"></td>
+			</tr>
+			<tr>
+				<td>RJ</td>
+				<td>36.678,66</td>
+				<td id="percentual-rj"></td>
+			</tr>
+			<tr>
+				<td>MG</td>
+				<td>29.229,88</td>
+				<td id="percentual-mg"></td>
+			</tr>
+			<tr>
+				<td>ES</td>
+				<td>27.165,48</td>
+				<td id="percentual-es"></td>
+			</tr>
+			<tr>
+				<td>Outros</td>
+				<td>19.849,53</td>
+				<td id="percentual-outros"></td>
+			</tr>
+			<tr>
+				<td><strong>Total</strong></td>
+				<td><strong>180.759,98</strong></td>
+				<td id="percentual-total"></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<script>
+	// Faturamento mensal por estado
+var faturamento_sp = 67836.43;
+var faturamento_rj = 36678.66;
+var faturamento_mg = 29229.88;
+var faturamento_es = 27165.48;
+var faturamento_outros = 19849.53;
+
+// Total do faturamento mensal
+var total_faturamento = faturamento_sp + faturamento_rj + faturamento_mg + faturamento_es + faturamento_outros;
+
+// Percentual de faturamento por estado
+var percentual_sp = (faturamento_sp / total_faturamento) * 100;
+var percentual_rj = (faturamento_rj / total_faturamento) * 100;
+var percentual_mg = (faturamento_mg / total_faturamento) * 100;
+var percentual_es = (faturamento_es / total_faturamento) * 100;
+var percentual_outros = (faturamento_outros / total_faturamento) * 100;
+
+// Percentual total
+var percentual_total = percentual_sp + percentual_rj + percentual_mg + percentual_es + percentual_outros;
+
+// Exibindo percentuais na tabela HTML
+document.getElementById("percentual-sp").innerHTML = percentual_sp.toFixed(2) + "%";
+document.getElementById("percentual-rj").innerHTML = percentual_rj.toFixed(2) + "%";
+document.getElementById("percentual-mg").innerHTML = percentual_mg.toFixed(2) + "%";
+document.getElementById("percentual-es").innerHTML = percentual_es.toFixed(2) + "%";
+document.getElementById("percentual-outros").innerHTML = percentual_outros.toFixed(2) + "%";
+document.getElementById("percentual-total").innerHTML = percentual_total.toFixed(2) + "%";
+</script>

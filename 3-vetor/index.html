@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dados de faturamento</title>
+  </head>
+  <body>
+    <label for="opcoes">Escolha uma opção:</label>
+    <select id="opcoes" onchange="exibirDados()">
+      <option value="menor">Menor valor de faturamento</option>
+      <option value="maior">Maior valor de faturamento</option>
+      <option value="acima">Dias com faturamento acima da média mensal</option>
+    </select>
+    <div id="resultado"></div>
+    <script>
+     let colabJSON ='{"dados": ['+
+'{"dia": 1, "valor": 22174.1664},'+
+'{"dia": 2, "valor": 24537.6698},'+
+'{"dia": 3, "valor": 26139.6134},'+
+'{"dia": 4, "valor": 0.0},'+
+'{"dia": 5, "valor": 0.0},'+
+'{"dia": 6, "valor": 26742.6612},'+
+'{"dia": 7, "valor": 0.0},'+
+'{"dia": 8, "valor": 42889.2258},'+
+'{"dia": 9, "valor": 46251.174},'+
+'{"dia": 10, "valor": 11191.4722},'+
+'{"dia": 11, "valor": 0.0},'+
+'{"dia": 12, "valor": 0.0},'+
+'{"dia": 13, "valor": 3847.4823},'+
+'{"dia": 14, "valor": 373.7838},'+
+'{"dia": 15, "valor": 2659.7563},'+
+'{"dia": 16, "valor": 48924.2448},'+
+'{"dia": 17, "valor": 18419.2614},'+
+'{"dia": 18, "valor": 0.0},'+
+'{"dia": 19, "valor": 0.0},'+
+'{"dia": 20, "valor": 35240.1826},'+
+'{"dia": 21, "valor": 43829.1667},'+
+'{"dia": 22, "valor": 18235.6852},'+
+'{"dia": 23, "valor": 4355.0662},'+
+'{"dia": 24, "valor": 13327.1025},'+
+'{"dia": 25, "valor": 0.0},'+
+'{"dia": 26, "valor": 0.0},'+
+'{"dia": 27, "valor": 25681.8318},'+
+'{"dia": 28, "valor": 1718.1221},'+
+'{"dia": 29, "valor": 13220.495},'+
+'{"dia": 30, "valor": 8414.61}'+
+']}' ;
+
+      let dados = JSON.parse(colabJSON).dados;
+
+      function exibirDados() {
+        let opcao = document.getElementById("opcoes").value;
+        let resultado = document.getElementById("resultado");
+        if (opcao === "menor") {
+          let menorFaturamento = Math.min(...dados.map(item => item.valor));
+          resultado.innerHTML = `Menor faturamento: ${menorFaturamento}`;
+        } else if (opcao === "maior") {
+          let maiorFaturamento = Math.max(...dados.map(item => item.valor));
+          resultado.innerHTML = `Maior faturamento: ${maiorFaturamento}`;
+        } else if (opcao === "acima") {
+          let mediaMensal = dados.reduce((a, b) => a + b.valor, 0) / dados.length;
+          let diasAcimaDaMedia = dados.filter(item => item.valor > mediaMensal).length;
+          resultado.innerHTML = `Número de dias com faturamento acima da média mensal: ${diasAcimaDaMedia}`;
+        }
+      }
+    </script>
+  </body>
+</html>
